@@ -122,15 +122,19 @@ if st.button("Start Debate"):
     st.markdown("<div class='subheader'>Debate Topic:</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debate-topic'>{topic}</div>", unsafe_allow_html=True)
     moderator.topic = topic
-    moderator.introduce_topic()
+    st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.introduce_topic()}</div>", unsafe_allow_html=True)
 
     # Opening statements
     st.markdown("<div class='subheader'>Opening Statements</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='debater-text'>**Pro Debater:** {pro_debater.generate_opening_statement(topic)}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='debater-text'>**Con Debater:** {con_debater.generate_opening_statement(topic)}</div>", unsafe_allow_html=True)
+    pro_opening = pro_debater.generate_opening_statement(topic)
+    con_opening = con_debater.generate_opening_statement(topic)
+    st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_opening}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_opening}</div>", unsafe_allow_html=True)
 
     # Main Arguments
     st.markdown("<div class='subheader'>Main Arguments</div>", unsafe_allow_html=True)
+    pro_argument = pro_debater.generate_main_argument()
+    st.markdown(f"<div class='debater'>Pro Debater's Argument:</div> <div class='debater-text'>{pro_argument}</div>", unsafe_allow_html=True)
     
     # Pro Debater's Argument and Feedback
     pro_argument = pro_debater.generate_main_argument()
