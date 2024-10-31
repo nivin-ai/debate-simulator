@@ -18,8 +18,8 @@ class Debater:
             prompt = f"Provide an opening statement for a debate supporting the topic '{topic}' in less than 100 words. Keep it simple and use simple words. Include salutations."
         else:
             prompt = f"Provide an opening statement for a debate opposing the topic '{topic}' in less than 100 words. Keep it simple and use simple words. Include salutations."
-        response = self.model(prompt, max_length=100, do_sample=True)
-        opening_statement = response[0]['generated_text']
+        response = self.model.generate_content(prompt)
+        opening_statement = response.text
         self.memory.append(opening_statement)
         return opening_statement
 
