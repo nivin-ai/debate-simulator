@@ -145,7 +145,8 @@ if st.button("Start Debate"):
         st.markdown(f"<div class='debater-text'>{pro_argument}</div>", unsafe_allow_html=True)
     with col2:
         st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='feedback'>{message}<br><b>Rating:</b> {rating}</div>", unsafe_allow_html=True)
+        for claim, message, rating in pro_feedback:
+            st.markdown(f"<div class='feedback'>Claim: {claim} - \n{message} \n(Rating: {rating})</div>",unsafe_allow_html=True)
 
     # Con Debater's Argument and Fact-Checker Feedback
     con_argument = con_debater.generate_main_argument(topic)
@@ -155,7 +156,8 @@ if st.button("Start Debate"):
         st.markdown(f"<div class='debater-text'>{con_argument}</div>", unsafe_allow_html=True)
     with col2:
         st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='feedback'>{message}<br><b>Rating:</b> {rating}</div>", unsafe_allow_html=True)
+        for claim, message, rating in con_feedback:
+            st.markdown(f"<div class='feedback'>Claim: {claim} - \n{message} \n(Rating: {rating})</div>",unsafe_allow_html=True)
 
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
