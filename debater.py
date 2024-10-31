@@ -31,9 +31,9 @@ class Debater:
         Generate a main argument considering previous points (for coherence).
         """
         if self.position in ['Pro', 'pro']:
-            prompt = f"Supporting the topic {topic}, build upon the previous points: {', '.join(previous_points)}. Stick to 5 bullet points and nothing else."
+            prompt = f"Supporting the topic {topic}, build upon the previous points: {', '.join(previous_points)}. Answer only in bullet points."
         else:
-            prompt = f"Opposing the topic {topic}, build upon the previous points: {', '.join(previous_points)}. Stick to 5 bullet points and nothing else."
+            prompt = f"Opposing the topic {topic}, build upon the previous points: {', '.join(previous_points)}. Answer only in bullet points."
         response = self.model.generate_content(prompt)
         main_argument = response.text
         self.memory.append(main_argument)
