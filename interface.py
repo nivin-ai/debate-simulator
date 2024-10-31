@@ -89,6 +89,12 @@ st.markdown(
     }
 
     /* Moderator and debater styling */
+
+    .debater {
+        font-weight: 900;
+        color: #333;
+        margin: 10px 0;
+    }
     .debater-text {
         font-weight: 500;
         color: #333;
