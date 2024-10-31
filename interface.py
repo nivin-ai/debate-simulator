@@ -1,17 +1,10 @@
-import sys
-import os
-
-sys.path.append('c:\\DebateSystem')
-
-
-
 
 import streamlit as st
 from streamlit import markdown
 
-from agents.debater import Debater
-from agents.fact_checker import FactChecker
-from agents.moderator import Moderator
+from debater import Debater
+from fact_checker import FactChecker
+from moderator import Moderator
 
 # Page configuration
 st.set_page_config(page_title="Adversarial AI Debate System", layout="centered")
