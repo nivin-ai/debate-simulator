@@ -34,8 +34,8 @@ class Debater:
             prompt = f"Supporting the topic {topic}, build upon the previous points: {', '.join(previous_points)}"
         else:
             prompt = f"Opposing the topic {topic}, build upon the previous points: {', '.join(previous_points)}"
-        response = self.model(prompt, max_length=250, do_sample=True)
-        main_argument = response[0]['generated_text']
+        response = self.model.generate_content(prompt)
+        main_argument = response.text
         self.memory.append(main_argument)
         return main_argument
 
@@ -47,8 +47,8 @@ class Debater:
             prompt = f"Supporting the topic {topic}, oppose the following points: {', '.join(opponent_points)}."
         else:
             prompt = f"Opposing the topic {topic}, oppose the following points: {', '.join(opponent_points)}."
-        response = self.model(prompt, max_length=75, do_sample=True)
-        rebuttal = response[0]['generated_text']
+        response = self.model.generate_content(prompt)
+        rebuttal = response.text
         self.memory.append(rebuttal)
         return rebuttal
 
@@ -57,10 +57,10 @@ class Debater:
         Generate a closing statement that summarizes the debater's position.
         """
         if self.position in ['pro' ,'Pro']:
-            prompt = f"Supporting the topic {topic}, provide a closing statement summarizing your arguments."
+            prompt = f"Supporting the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
         else:
-            prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments."
+            prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
         response = self.model(prompt, max_length=50, do_sample=True)
-        closing_statement = response[0]['generated_text']
+        closing_statement = response.text
         self.memory.append(closing_statement)
         return closing_statement
