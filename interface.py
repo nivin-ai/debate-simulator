@@ -145,7 +145,7 @@ if st.button("Start Debate"):
     st.markdown(f"<div class='debater'>Pro Debater's Argument:</div> <div class='debater-text'>{pro_argument}</div>", unsafe_allow_html=True)
 
     # con debater's rebuttal
-    con_rebuttal = model.generate_rebuttal(topic, pro_argument)
+    con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
     st.markdown(f"<div class='debater'>Con Debater's Rebuttal:</div> <div class='debater-text'>{con_rebuttal}</div>", unsafe_allow_html=True)
     
     # Pro Debater's Feedback
