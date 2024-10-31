@@ -20,15 +20,15 @@ class FactChecker:
         """
         # Check if claim is in the fact database
         if claim in self.fact_db:
-            return f"The claim '{claim}' is accurate.", "accurate"
+            return f"The claim is accurate.", "accurate"
         
         # Check if claim is a common misconception
         if claim in self.misconceptions:
             correct_fact = self.misconceptions[claim]
-            return f"The claim '{claim}' is inaccurate. Correct information: {correct_fact}", "inaccurate"
+            return f"The claim is inaccurate. Correct information: {correct_fact}", "inaccurate"
         
         # If claim is not found, mark as uncertain
-        return f"The accuracy of the claim '{claim}' cannot be verified.", "uncertain"
+        return f"The accuracy of the claim cannot be verified.", "uncertain"
 
     def provide_feedback(self, debater_statement):
         """
