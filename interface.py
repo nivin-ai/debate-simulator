@@ -163,8 +163,8 @@ if st.button("Start Debate"):
 
     # Closing Statements
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_debater.generate_closing_statement()}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_debater.generate_closing_statement()}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_debater.generate_closing_statement(topic)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_debater.generate_closing_statement(topic)}</div>", unsafe_allow_html=True)
 
     # Final remarks
     st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.finalize_debate()}</div>", unsafe_allow_html=True)
