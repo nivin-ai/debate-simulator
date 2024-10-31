@@ -1,5 +1,8 @@
 from transformers import pipeline
 import google.generativeai as genai
+import os
+os.environ['GOOGLE_API_KEY'] = "AIzaSyAvgIy_Ckc8o7aSc4I2NlRBPAFgmksXGVs"
+genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 class Debater:
     def __init__(self, position):
