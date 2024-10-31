@@ -60,7 +60,7 @@ class Debater:
             prompt = f"Supporting the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
         else:
             prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
-        response = self.model(prompt, max_length=50, do_sample=True)
+        response = self.model.generate_content(prompt)
         closing_statement = response.text
         self.memory.append(closing_statement)
         return closing_statement
