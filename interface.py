@@ -7,7 +7,7 @@ from fact_checker import FactChecker
 from moderator import Moderator
 
 # Page configuration
-st.set_page_config(page_title="Adversarial AI Debate System", layout="centered")
+st.set_page_config(page_title="AI Debate Simulator", layout="centered")
 
 # CSS styling for enhanced appearance
 st.markdown(
@@ -97,8 +97,8 @@ pro_debater = Debater("Pro")
 con_debater = Debater("Con")
 
 # User input for debate topic
-st.markdown("<div class='title'>Adversarial AI Debate System</div>", unsafe_allow_html=True)
-st.markdown("<div class='header'>Welcome to the AI-Driven Debate Simulation!</div>", unsafe_allow_html=True)
+st.markdown("<div class='title'>AI Debate Simulator</div>", unsafe_allow_html=True)
+st.markdown("<div class='header'>This is an AI-driven debate simulator. Give in any topic of your choice and witness two AI bots face off!</div>", unsafe_allow_html=True)
 topic = st.text_input("Enter the debate topic:", "The impact of AI on employment")
 
 # Start Debate Button
