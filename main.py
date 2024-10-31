@@ -5,7 +5,7 @@ from moderator import Moderator
 
 def run_debate(topic):
     # Initialize the agents
-    fact_checker = FactChecker('data/facts_db.json', 'data/misconceptions.json')
+    fact_checker = FactChecker('facts_db.json', 'misconceptions.json')
     moderator = Moderator(topic)
     pro_debater = Debater("Pro")
     con_debater = Debater("Con")
