@@ -1,4 +1,6 @@
 import streamlit as st
+from streamlit import markdown
+
 from debater import Debater
 from fact_checker import FactChecker
 from moderator import Moderator
@@ -6,31 +8,31 @@ from moderator import Moderator
 # Page configuration
 st.set_page_config(page_title="AI Debate Simulator", layout="centered")
 
-# CSS styling for a Netflix-inspired dark theme
+# CSS styling for enhanced appearance
 st.markdown(
     """
     <style>
     /* Overall page styling */
     body {
-        font-family: "Helvetica Neue", sans-serif;
-        color: #FFFFFF;
-        background-color: #141414;
+        font-family: "Arial", sans-serif;
+        color: #333;
+        background-color: #F5F5F5;
     }
     
     /* Title styling */
     .title {
-        font-size: 3em;
+        font-size: 2.5em;
         font-weight: 700;
-        color: #E50914;
+        color: #333399;
         text-align: center;
         margin-bottom: 10px;
     }
     
-    /* Description styling */
+    /* Subtle description styling */
     .description {
-        font-size: 1.1em;
+        font-size: 1em;
         font-weight: 400;
-        color: #B3B3B3;
+        color: #666;
         text-align: center;
         margin-top: 5px;
         margin-bottom: 20px;
@@ -38,85 +40,72 @@ st.markdown(
 
     /* Header styling */
     .header {
-        font-size: 1.8em;
+        font-size: 1.5em;
         font-weight: 600;
-        color: #E50914;
+        color: #333399;
         margin-top: 20px;
         margin-bottom: 10px;
-        text-align: left;
+        text-align: center;
     }
 
     /* Text input styling */
     input[type="text"] {
         border-radius: 5px;
-        border: 1px solid #333;
+        border: 1px solid #333399;
         padding: 10px;
         width: 100%;
         font-size: 1em;
-        color: #FFF;
-        background-color: #333;
+        color: #333;
+        background-color: #EFEFEF;
     }
-
-    /* Subheader styling */
+    
+    /* Section subheaders */
     .subheader {
-        font-size: 1.5em;
+        font-size: 1.3em;
         font-weight: 600;
-        color: #E50914;
+        color: #333399;
         margin-top: 20px;
-        border-bottom: 2px solid #E50914;
+        border-bottom: 2px solid #333399;
         padding-bottom: 5px;
-        text-align: left;
     }
 
     /* Fact-Checker feedback styling */
     .feedback {
         margin: 10px 0;
-        padding: 15px;
-        background-color: #333333;
-        border-radius: 5px;
-        color: #B3B3B3;
+        padding: 10px;
+        background-color: #F0F8FF;
+        border-left: 5px solid #007ACC;
     }
 
     /* Button styling */
     .stButton>button {
-        background-color: #E50914;
+        background-color: #333399;
         color: white;
         font-weight: bold;
         font-size: 1em;
-        padding: 10px 20px;
+        padding: 8px 20px;
         border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        transition: 0.3s;
+        border: 1px solid #333399;
     }
 
-    .stButton>button:hover {
-        background-color: #B20710;
-    }
+    /* Moderator and debater styling */
 
-    /* Debater styling */
     .debater {
         font-weight: 900;
-        color: #E50914;
+        color: #333;
         margin: 10px 0;
-        font-size: 1.2em;
     }
-
     .debater-text {
-        font-weight: 400;
-        color: #FFFFFF;
+        font-weight: 500;
+        color: #333;
         margin: 10px 0;
     }
 
     /* Debate Topic styling */
     .debate-topic {
         font-weight: bold;
-        font-size: 1.3em;
-        color: #FFFFFF;
-        background-color: #333333;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
+        font-size: 1.2em;
+        color: #333399;
     }
     
     </style>
@@ -131,7 +120,7 @@ con_debater = Debater("Con")
 
 # User input for debate topic
 st.markdown("<div class='title'>AI Debate Simulator</div>", unsafe_allow_html=True)
-st.markdown("<div class='description'>An AI-powered debate simulator. Provide a topic, and watch AI-driven arguments unfold!</div>", unsafe_allow_html=True)
+st.markdown("<div class='description'>This is an AI-driven debate simulator. Provide a topic, and watch two AI bots face off!</div>", unsafe_allow_html=True)
 topic = st.text_input("Enter the debate topic:", "The impact of AI on employment")
 
 # Start Debate Button
@@ -150,9 +139,12 @@ if st.button("Start Debate"):
 
     # Main Arguments
     st.markdown("<div class='subheader'>Main Arguments</div>", unsafe_allow_html=True)
+
+    # pro debater's argument
     pro_argument = pro_debater.generate_main_argument(topic)
     st.markdown(f"<div class='debater'>Pro Debater's Argument:</div> <div class='debater-text'>{pro_argument}</div>", unsafe_allow_html=True)
 
+    # con debater's rebuttal
     con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
     st.markdown(f"<div class='debater'>Con Debater's Rebuttal:</div> <div class='debater-text'>{con_rebuttal}</div>", unsafe_allow_html=True)
     
@@ -161,9 +153,11 @@ if st.button("Start Debate"):
     for claim, message, rating in fact_checker.provide_feedback(pro_argument):
         st.markdown(f"<div class='feedback'><div class='debater'>Claim:</div> <div class='debater-text'>{claim}</div> <div class='debater-text'>{message}</div> <div class='debater-text'>Rating: {rating}</div></div>", unsafe_allow_html=True)
 
+    # Con Debater's argument
     con_argument = con_debater.generate_main_argument(topic)
     st.markdown(f"<div class='debater'>Con Debater's Argument:</div> <div class='debater-text'>{con_argument}</div>", unsafe_allow_html=True)
     
+    # pro debater's rebuttal
     pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
     st.markdown(f"<div class='debater'>Pro Debater's Rebuttal:</div> <div class='debater-text'>{pro_rebuttal}</div>", unsafe_allow_html=True)
     
@@ -172,16 +166,18 @@ if st.button("Start Debate"):
     for claim, message, rating in fact_checker.provide_feedback(con_argument):
         st.markdown(f"<div class='feedback'><div class='debater'>Claim:</div> <div class='debater-text'>{claim}</div> <div class='debater-text'>{message}</div> <div class='debater-text'>Rating: {rating}</div></div>", unsafe_allow_html=True)
 
+    # Moderator's intervention and summary
     st.markdown("<div class='subheader'>Moderator's Interventions</div>", unsafe_allow_html=True)
     moderator.pose_question()
     moderator.add_key_point("Pro Debater's main argument")
     moderator.add_key_point("Con Debater's main argument")
     moderator.summarize_debate()
 
+    # Closing Statements
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_debater.generate_closing_statement(topic)}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_debater.generate_closing_statement(topic)}</div>", unsafe_allow_html=True)
 
+    # Final remarks
     st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.finalize_debate()}</div>", unsafe_allow_html=True)
-
 
