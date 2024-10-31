@@ -57,9 +57,9 @@ class Debater:
         Generate a closing statement that summarizes the debater's position.
         """
         if self.position in ['pro' ,'Pro']:
-            prompt = f"Supporting the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
+            prompt = f"Supporting the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}. Keep it less than 70 words."
         else:
-            prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}"
+            prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}. Keep it less than 70 words."
         response = self.model.generate_content(prompt)
         closing_statement = response.text
         self.memory.append(closing_statement)
