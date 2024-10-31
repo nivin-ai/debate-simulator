@@ -6,3 +6,4 @@ pytest
 tensorflow
 torch
 tf-keras
+google-generativeai
