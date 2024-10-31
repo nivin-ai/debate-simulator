@@ -7,7 +7,7 @@ class Debater:
         """
         self.position = position
         self.memory = []  # Stores arguments and key points
-        self.model = pipeline("text2text-generation", model="google/flan-t5-small")  # Using GPT-2
+        self.model = pipeline("text2text-generation", model="google/flan-t5-small") 
 
     def generate_opening_statement(self, topic):
         """
