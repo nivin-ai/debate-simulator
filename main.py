@@ -1,7 +1,7 @@
 
-from agents.debater import Debater
-from agents.fact_checker import FactChecker
-from agents.moderator import Moderator
+from debater import Debater
+from fact_checker import FactChecker
+from moderator import Moderator
 
 def run_debate(topic):
     # Initialize the agents
