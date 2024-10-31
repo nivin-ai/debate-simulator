@@ -1,0 +1,9 @@
+transformers
+nltk
+pandas
+streamlit
+pytest
+json
+tensorflow
+torch
+tf-keras
