@@ -157,6 +157,10 @@ if st.button("Start Debate"):
     con_argument = con_debater.generate_main_argument(topic)
     st.markdown(f"<div class='debater'>Con Debater's Argument:</div> <div class='debater-text'>{con_argument}</div>", unsafe_allow_html=True)
     
+    # pro debater's rebuttal
+    pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
+    st.markdown(f"<div class='debater'>Pro Debater's Rebuttal:</div> <div class='debater-text'>{pro_rebuttal}</div>", unsafe_allow_html=True)
+    
     # Con debater's feedback
     st.markdown("<div class='subheader'>Fact-Checker Feedback for Con Debater:</div>", unsafe_allow_html=True)
     for claim, message, rating in fact_checker.provide_feedback(con_argument):
