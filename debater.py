@@ -13,7 +13,10 @@ class Debater:
         """
         Generate an opening statement based on the debate topic and position.
         """
-        prompt = f"As a {self.position} debater, provide an opening statement on the topic: {topic}."
+        if self.position == 'Pro':
+            prompt = f"Provide an opening statement for a debate supporting the topic: {topic}."
+        else:
+            prompt = f"Provide an opening statement for a debate against the topic: {topic}."
         response = self.model(prompt, max_length=100, do_sample=True)
         opening_statement = response[0]['generated_text']
         self.memory.append(opening_statement)
