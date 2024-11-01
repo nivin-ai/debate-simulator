@@ -81,3 +81,6 @@ class Moderator:
         prompt = f"The following is the debate content from each debater-        {list(self.memory.keys())[0]}:    {self.memory[list(self.memory.keys())[0]]},        {list(self.memory.keys())[1]}:    {self.memory[list(self.memory.keys())[1]]}. From this content, decide a winner."
         result = self.model.generate_content(prompt).text
         return result
+
+    def inappropriate_content_check(text):
+        return None
