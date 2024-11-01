@@ -131,8 +131,8 @@ if st.button("Start Debate"):
     st.markdown("<div class='subheader'>Opening Statements</div>", unsafe_allow_html=True)
     pro_opening = pro_debater.generate_opening_statement(topic)
     con_opening = con_debater.generate_opening_statement(topic)
-    moderator.memory[pro_debator] = [pro_opening]
-    moderator.memory[con_debator] = [con_opening]
+    moderator.memory['pro_debator'] = [pro_opening]
+    moderator.memory['con_debator'] = [con_opening]
     st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_opening}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_opening}</div>", unsafe_allow_html=True)
 
