@@ -11,6 +11,7 @@ class Moderator:
         self.time_limit = 60  # Time limit for each stage in seconds
         self.key_points = []  # Stores important points for summarization
         self.turn = "Pro"     # Tracks which debater's turn it is (Pro or Con)
+        self.memory = {}   # to store the content from the debaters
 
     def introduce_topic(self):
         """
