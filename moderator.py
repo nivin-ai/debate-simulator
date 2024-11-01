@@ -1,6 +1,11 @@
 
 import time
 
+import google.generativeai as genai
+import os
+os.environ['GOOGLE_API_KEY'] = "AIzaSyAvgIy_Ckc8o7aSc4I2NlRBPAFgmksXGVs"
+genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+
 class Moderator:
     def __init__(self, topic):
         """
@@ -12,6 +17,7 @@ class Moderator:
         self.key_points = []  # Stores important points for summarization
         self.turn = "Pro"     # Tracks which debater's turn it is (Pro or Con)
         self.memory = {}   # to store the content from the debaters
+        self.model = genai.GenerativeModel('gemini-pro')
 
     def introduce_topic(self):
         """
@@ -73,3 +79,8 @@ class Moderator:
         conclusion = f"Thank you both for an engaging debate. That concludes our session on '{self.topic}'."
         print(conclusion)
         return conclusion
+
+    def decide_winner(self, memory):
+        prompt = f"The following is the debate content from each debater- {list(memory.keys())[0]}: memory[list(memory.keys())[0]]       {list(memory.keys())[1]}: memory[list(memory.keys())[1]]. From this content, decide a winner."
+        result = model.generate_content(prompt)
+        return result
