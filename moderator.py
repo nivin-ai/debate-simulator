@@ -79,5 +79,5 @@ class Moderator:
 
     def decide_winner(self, memory):
         prompt = f"The following is the debate content from each debater- {list(memory.keys())[0]}: {memory[list(memory.keys())[0]]}       {list(memory.keys())[1]}: {memory[list(memory.keys())[1]]}. From this content, decide a winner."
-        result = model.generate_content(prompt)
+        result = model.generate_content(prompt).text
         return result
