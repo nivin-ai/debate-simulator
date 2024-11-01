@@ -85,5 +85,5 @@ class Moderator:
     def inappropriate_content_check(text):
         return None
 
-    def end_debate():
-        return "This debate seems to be heading towards inappropriate conduct, hence I am being forced to end the debate here."
+    def end_debate(self):
+        return "This debate seems to introduce inappropriate content, hence I am being forced to end the debate here."
