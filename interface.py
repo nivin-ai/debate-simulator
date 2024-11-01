@@ -181,7 +181,6 @@ if st.button("Start Debate"):
     # Closing Statements
 
     pro_closing = pro_debater.generate_closing_statement(topic)
-    st.markdown(f"<div class='debater'>Moderator</div> <div class='debater-text'>{moderator.end_debate()}</div>", unsafe_allow_html=True)
     con_closing = con_debater.generate_closing_statement(topic)
     moderator.memory['pro_debater'].append(pro_closing)
     moderator.memory['con_debater'].append(con_closing)
