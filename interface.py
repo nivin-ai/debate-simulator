@@ -184,4 +184,6 @@ if st.button("Start Debate"):
 
     # Moderator's Final Remarks
     st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.finalize_debate()}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.decide_winner()}</div>", unsafe_allow_html=True)
+    
 
