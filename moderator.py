@@ -86,4 +86,4 @@ class Moderator:
         return None
 
     def end_debate(self):
-        return "This debate seems to introduce inappropriate content, hence I am being forced to end the debate here."
+        return "This response seems to have inappropriate content, hence I am being forced to filter it out."
