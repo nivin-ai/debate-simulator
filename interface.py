@@ -141,7 +141,8 @@ if st.button("Start Debate"):
     
     # Pro Debater's Argument and Fact-Checker Feedback
     pro_argument = pro_debater.generate_main_argument(topic)
-    moderator.memory['pro_debator'].append(pro_argument)
+    # moderator.memory['pro_debator'].append(pro_argument)
+    moderator.memory['pro_debator'] = pro_argument
     st.markdown(f"<div class='debater'>Pro Debater's Argument:</div>", unsafe_allow_html=True)
     col1, col2 = st.columns([2, 1])
     with col1:
@@ -153,7 +154,8 @@ if st.button("Start Debate"):
 
     # Con Debater's Argument and Fact-Checker Feedback
     con_argument = con_debater.generate_main_argument(topic)
-    moderator.memory['con_debator'].append(con_argument)
+    # moderator.memory['con_debator'].append(con_argument)
+    moderator.memory['con_debator'] = con_argument
     st.markdown(f"<div class='debater'>Con Debater's Argument:</div>", unsafe_allow_html=True)
     col1, col2 = st.columns([2, 1])
     with col1:
@@ -166,18 +168,20 @@ if st.button("Start Debate"):
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
     pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
-    moderator.memory['pro_debater'].append(pro_rebuttal)
+    # moderator.memory['pro_debater'].append(pro_rebuttal)
+    moderator.memory['pro_debater'] = pro_rebuttal 
     st.markdown(f"<div class='debater'>Pro Debater's Rebuttal:</div> <div class='debater-text'>{pro_rebuttal}</div>", unsafe_allow_html=True)
 
     con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
-    moderator.memory['con_debator'].append(con_rebuttal)
+    # moderator.memory['con_debator'].append(con_rebuttal)
+    moderator.memory['con_debator'] = con_rebuttal
     st.markdown(f"<div class='debater'>Con Debater's Rebuttal:</div> <div class='debater-text'>{con_rebuttal}</div>", unsafe_allow_html=True)
     
     # Closing Statements
     pro_closing = pro_debater.generate_closing_statement(topic)
     con_closing = con_debater.generate_closing_statement(topic)
-    moderator.memory['pro_debater'].append(pro_closing)
-    moderator.memory['con_debater'].append(con_closing)
+    # moderator.memory['pro_debater'].append(pro_closing)
+    # moderator.memory['con_debater'].append(con_closing)
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debater'>Pro Debater:</div> <div class='debater-text'>{pro_closing}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='debater'>Con Debater:</div> <div class='debater-text'>{con_closing}</div>", unsafe_allow_html=True)
