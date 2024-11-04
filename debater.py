@@ -22,8 +22,8 @@ class Debater:
         else:
             prompt = f"Provide an opening statement for a debate opposing the topic '{topic}' in less than 100 words. Keep it simple and use simple words. Include salutations."
         response = self.model.generate_content(prompt)
-        opening_statement = response.text
-        self.memory.append(opening_statement)
+        #opening_statement = response.text
+        #self.memory.append(opening_statement)
         return response
 
     def generate_main_argument(self, topic, previous_points=[]):
