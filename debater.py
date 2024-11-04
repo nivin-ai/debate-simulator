@@ -70,6 +70,6 @@ class Debater:
         else:
             prompt = f"Opposing the topic {topic}, provide a closing statement summarizing your arguments from {self.memory}. Keep it less than 70 words."
         response = self.model.generate_content(prompt)
-        closing_statement = response.text
-        self.memory.append(closing_statement)
-        return closing_statement
+        # closing_statement = response.text
+        # self.memory.append(closing_statement)
+        return response
