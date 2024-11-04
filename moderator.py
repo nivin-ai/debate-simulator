@@ -42,11 +42,11 @@ class Moderator:
         time.sleep(2)  # Simulate timing with a short sleep
         return f"{self.turn} debater's time is up."
 
-    def pose_question(self, debater, memory):
+    def pose_question_pro(self, memory):
         """
         Pose a question to both debaters to encourage deeper discussion.
         """
-        prompt = f"Based on the following content from the debater: [{self.memory[debater]}], ask a relevant question to further challenge the debater."
+        prompt = f"Based on the following content from the debater: [{self.memory['pro_debater']}], ask a relevant question to further challenge the debater."
         question = self.model.generate_content(prompt).text
         print(f"Moderator: {question}")
         return question
