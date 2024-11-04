@@ -46,7 +46,7 @@ class Moderator:
         """
         Pose a question to both debaters to encourage deeper discussion.
         """
-        prompt = f"Based on {statement}, pose a single sentence question to the debater."
+        prompt = f"Based on the following statement by the debater: [{statement}], pose a single sentence question to the debater."
         question = self.model.generate_content(prompt).text
         #print(f"Moderator: {question}")
         return question
