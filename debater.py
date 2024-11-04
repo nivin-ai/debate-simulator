@@ -44,7 +44,7 @@ class Debater:
         Question: {question}
         Answer:
         '''
-        answer = self.model.generate_content(prompt)
+        answer = self.model.generate_content(prompt).text
         return answer
 
     def generate_rebuttal(self, topic, opponent_points):
