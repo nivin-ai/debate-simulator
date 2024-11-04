@@ -153,7 +153,7 @@ if st.button("Start Debate"):
             st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
 
     # Moderator's question for pro debater
-    st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.pose_question('pro_debater', moderator.memory)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.pose_question_pro(moderator.memory)}</div>", unsafe_allow_html=True)
 
     
 
