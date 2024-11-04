@@ -46,7 +46,7 @@ class Moderator:
         """
         Pose a question to both debaters to encourage deeper discussion.
         """
-        prompt = f"Based on the following statement by the debater: [{statement}], pose a counter question to the debater."
+        prompt = f"You are the moderator of a debate. Based on the following statement by the debater: [{statement}], pose a counter question to the debater."
         question = self.model.generate_content(prompt).text
         #print(f"Moderator: {question}")
         return question
@@ -108,6 +108,6 @@ class Moderator:
         return conclusion
 
     def decide_winner(self, memory):
-        prompt = f"The following is the debate content from each debater-        {list(self.memory.keys())[0]}:    {self.memory[list(self.memory.keys())[0]]},        {list(self.memory.keys())[1]}:    {self.memory[list(self.memory.keys())[1]]}. From this content, decide a winner."
+        prompt = f"You are the acting judge of a debate. The following is the debate content from each debater-        {list(self.memory.keys())[0]}:    {self.memory[list(self.memory.keys())[0]]},        {list(self.memory.keys())[1]}:    {self.memory[list(self.memory.keys())[1]]}. From this content, decide a winner."
         result = self.model.generate_content(prompt).text
         return result
