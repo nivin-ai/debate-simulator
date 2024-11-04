@@ -42,7 +42,7 @@ class Moderator:
         time.sleep(2)  # Simulate timing with a short sleep
         return f"{self.turn} debater's time is up."
 
-    def pose_question(self, debater):
+    def pose_question(self, debater, memory):
         """
         Pose a question to both debaters to encourage deeper discussion.
         """
