@@ -39,6 +39,14 @@ class Debater:
         self.memory.append(main_argument)
         return main_argument
 
+    def answer(self, question):
+        prompt = f'''
+        Question: {question}
+        Answer:
+        '''
+        answer = self.model.generate_content(prompt)
+        return answer
+
     def generate_rebuttal(self, topic, opponent_points):
         """
         Generate a rebuttal based on the opponent's points.
