@@ -44,7 +44,7 @@ class Debater:
         prompt = f'''As a participant in a debate, answer the following question from the moderator.
         Question: {question}
         '''
-        answer = self.model.generate_content(prompt).text
+        answer = self.model.generate_content(prompt)
         return answer
 
     def generate_rebuttal(self, topic, opponent_points):
