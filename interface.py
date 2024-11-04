@@ -200,7 +200,7 @@ if st.button("Start Debate"):
     # Moderator's question for Pro Debater
     if pro_argument_safety==None:
         pro_question = moderator.pose_question(pro_argument)
-        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {pro_question}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_question}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_debater.answer_question(pro_question)}</div>", unsafe_allow_html=True)
 
     # Con Debater's Argument with Fact-Checker Feedback
@@ -222,7 +222,7 @@ if st.button("Start Debate"):
     # Moderator's question for Con Debater
     if con_argument_safety==None:
         con_question = moderator.pose_question(con_argument)
-        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {con_question}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_question}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
 
     # Rebuttals
