@@ -192,7 +192,7 @@ if st.button("Start Debate"):
             st.markdown(f"<div class='pro-debater-text'>{pro_argument.text}</div>", unsafe_allow_html=True)
         with col2:
             st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='feedback'>Claim: {fact_checker.get_fact(pro_argument)}<br>Rating:</div>",unsafe_allow_html=True)
+            st.markdown(f"<div class='feedback'>Claim: {fact_checker.get_claim(pro_argument)}<br>Rating:</div>",unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_argument_safety}</div>", unsafe_allow_html=True)
 
