@@ -52,9 +52,9 @@ class Debater:
         Generate a rebuttal based on the opponent's points.
         """
         if self.position in ['Pro', 'pro']:
-            prompt = f"Supporting the topic {topic}, oppose the following points: {', '.join(opponent_points)}."
+            prompt = f"As a participant in a debate supporting the topic {topic}, oppose the following points from your opponent: {', '.join(opponent_points)}."
         else:
-            prompt = f"Opposing the topic {topic}, oppose the following points: {', '.join(opponent_points)}."
+            prompt = f"As a participant in a debate opposing the topic {topic}, oppose the following points from your opponent: {', '.join(opponent_points)}."
         response = self.model.generate_content(prompt)
         # rebuttal = response.text
         # self.memory.append(rebuttal)
