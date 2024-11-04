@@ -39,7 +39,7 @@ class Debater:
         self.memory.append(main_argument)
         return main_argument
 
-    def answer(self, question):
+    def answer_question(self, question):
         prompt = f'''
         Question: {question}
         Answer:
