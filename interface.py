@@ -158,7 +158,7 @@ if st.button("Start Debate"):
     st.markdown(f"<div class='debater'>Moderator: </div> <div class='debater-text'>I would like to pose a question here. {pro_question}</div>", unsafe_allow_html=True)
 
     #pro debater's answer
-    st.markdown(f"<div class='debater'>Pro Debater: </div> <div class='debater-text'>{pro_debater.answer(pro_question)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Pro Debater: </div> <div class='debater-text'>{pro_debater.answer_question(pro_question)}</div>", unsafe_allow_html=True)
 
 
     # Con Debater's Argument and Fact-Checker Feedback
