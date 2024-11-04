@@ -60,6 +60,6 @@ class FactChecker:
 
     def get_claim(self, text):
         prompt = f"Identify and return a fact that needs to be checked from the following text: {text}. Return only the fact."
-        claim = model.generate_content(prompt).text
+        claim = self.model.generate_content(prompt).text
         return claim
 
