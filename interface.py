@@ -247,7 +247,6 @@ if st.button("Start Debate"):
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
     
     pro_closing = pro_debater.generate_closing_statement(topic)
-    st.markdown(type(pro_closing))
     pro_closing_safety = moderator.safety_check(pro_closing)
     if pro_closing_safety == None:
         moderator.memory['pro_debater'].append(pro_closing.text)
