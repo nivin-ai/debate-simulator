@@ -183,37 +183,47 @@ if st.button("Start Debate"):
     # Main Arguments with Fact-Checker Feedback
     st.markdown("<div class='subheader'>Main Arguments</div>", unsafe_allow_html=True)
     pro_argument = pro_debater.generate_main_argument(topic)
-    moderator.memory['pro_debater'].append(pro_argument)
-    st.markdown(f"<div class='pro-debater'>Pro Debater's Argument:</div>", unsafe_allow_html=True)
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.markdown(f"<div class='pro-debater-text'>{pro_argument}</div>", unsafe_allow_html=True)
-    with col2:
-        st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
-        for claim, message, rating in fact_checker.provide_feedback(pro_argument):
-            st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
+    pro_argument_safety = moderator.safety_check(pro_argument)
+    if pro_argument_safety == None:
+        moderator.memory['pro_debater'].append(pro_argument)
+        st.markdown(f"<div class='pro-debater'>Pro Debater's Argument:</div>", unsafe_allow_html=True)
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            st.markdown(f"<div class='pro-debater-text'>{pro_argument.text}</div>", unsafe_allow_html=True)
+        with col2:
+            st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
+            for claim, message, rating in fact_checker.provide_feedback(pro_argument):
+                st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_argument_safety}</div>", unsafe_allow_html=True)
 
     # Moderator's question for Pro Debater
-    pro_question = moderator.pose_question(pro_argument)
-    st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {pro_question}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_debater.answer_question(pro_question)}</div>", unsafe_allow_html=True)
+    if pro_argument.text:
+        pro_question = moderator.pose_question(pro_argument)
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {pro_question}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_debater.answer_question(pro_question)}</div>", unsafe_allow_html=True)
 
     # Con Debater's Argument with Fact-Checker Feedback
     con_argument = con_debater.generate_main_argument(topic)
-    moderator.memory['con_debater'].append(con_argument)
-    st.markdown(f"<div class='con-debater'>Con Debater's Argument:</div>", unsafe_allow_html=True)
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.markdown(f"<div class='con-debater-text'>{con_argument}</div>", unsafe_allow_html=True)
-    with col2:
-        st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
-        for claim, message, rating in fact_checker.provide_feedback(con_argument):
-            st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
+    con_argument_safety = moderator.safety_check(con_argument)
+    if con_argument_safety == None:
+        moderator.memory['con_debater'].append(con_argument)
+        st.markdown(f"<div class='con-debater'>Con Debater's Argument:</div>", unsafe_allow_html=True)
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            st.markdown(f"<div class='con-debater-text'>{con_argument.text}</div>", unsafe_allow_html=True)
+        with col2:
+            st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
+            for claim, message, rating in fact_checker.provide_feedback(con_argument):
+                st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_argument_safety}</div>", unsafe_allow_html=True)
 
     # Moderator's question for Con Debater
-    con_question = moderator.pose_question(con_argument)
-    st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {con_question}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
+    if con_argument.text:
+        con_question = moderator.pose_question(con_argument)
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>I would like to pose a question here. {con_question}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
 
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
