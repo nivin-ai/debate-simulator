@@ -74,7 +74,7 @@ class Moderator:
              safety_ratings.get(rating.probability, "Unknown Rating"))
             for candidate in response.candidates
             for rating in candidate.safety_ratings
-            if rating.probability > 1
+            if rating.probability >= 1
         ]
     
         # Return result based on violations
