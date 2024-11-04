@@ -227,7 +227,7 @@ if st.button("Start Debate"):
 
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
-    pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
+    pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument.text)
     pro_rebuttal_safety = moderator.safety_check(pro_rebuttal)
     if pro_rebuttal_safety == None:
         moderator.memory['pro_debater'].append(pro_rebuttal.text)
@@ -235,7 +235,7 @@ if st.button("Start Debate"):
     else:
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_rebuttal_safety}</div>", unsafe_allow_html=True)
 
-    con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
+    con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument.text)
     con_rebuttal_safety = moderator.safety_check(con_rebuttal)
     if con_rebuttal_safety == None:
         moderator.memory['con_debater'].append(con_rebuttal.text)
