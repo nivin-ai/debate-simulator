@@ -41,9 +41,8 @@ class Debater:
         return main_argument
 
     def answer_question(self, question):
-        prompt = f'''
+        prompt = f'''As a participant in a debate, answer the following question from the moderator.
         Question: {question}
-        Answer:
         '''
         answer = self.model.generate_content(prompt).text
         return answer
