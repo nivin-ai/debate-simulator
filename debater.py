@@ -24,7 +24,7 @@ class Debater:
         response = self.model.generate_content(prompt)
         opening_statement = response.text
         self.memory.append(opening_statement)
-        return opening_statement
+        return response
 
     def generate_main_argument(self, topic, previous_points=[]):
         """
