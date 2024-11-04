@@ -57,9 +57,9 @@ class Debater:
         else:
             prompt = f"Opposing the topic {topic}, oppose the following points: {', '.join(opponent_points)}."
         response = self.model.generate_content(prompt)
-        rebuttal = response.text
-        self.memory.append(rebuttal)
-        return rebuttal
+        # rebuttal = response.text
+        # self.memory.append(rebuttal)
+        return response
 
     def generate_closing_statement(self, topic):
         """
