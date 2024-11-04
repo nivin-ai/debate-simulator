@@ -53,3 +53,8 @@ class FactChecker:
         self.fact_db[new_fact] = "verified"
         # Here, you would save the updated fact_db back to a file if needed.
 
+
+    def check_fact(self, text):
+        prompt = f"Identify and return a fact that needs to be checked from the following text: {text}. Return only the fact."
+        claim = model.generate_content(prompt).text
+
