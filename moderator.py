@@ -69,12 +69,15 @@ class Moderator:
         }
         
         # Collect any violations
-        violations = [(rating.category, rating.probability) for candidate in response.candidates for rating in candidate.safety_ratings if rating.probability > 1]
-    
+        violations = []
+        for candidate in response.candidates: 
+            for rating in candidate.safety_ratings:
+                if rating.probability > 1:
+                    violations.append((rating.category, rating.probability))
         # Return result based on violations
-        if not violations:
+        if violations==[]:
             return None
-        return f"Content masked due to safety violations: {violations}"
+        return f"Content masked due to the following safety violations: {violations}."
 
 
     def intervene(self, statement):
