@@ -185,7 +185,7 @@ if st.button("Start Debate"):
     pro_argument = pro_debater.generate_main_argument(topic)
     pro_argument_safety = moderator.safety_check(pro_argument)
     if pro_argument_safety == None:
-        moderator.memory['pro_debater'].append(pro_argument)
+        moderator.memory['pro_debater'].append(pro_argument.text)
         st.markdown(f"<div class='pro-debater'>Pro Debater's Argument:</div>", unsafe_allow_html=True)
         col1, col2 = st.columns([2, 1])
         with col1:
@@ -207,7 +207,7 @@ if st.button("Start Debate"):
     con_argument = con_debater.generate_main_argument(topic)
     con_argument_safety = moderator.safety_check(con_argument)
     if con_argument_safety == None:
-        moderator.memory['con_debater'].append(con_argument)
+        moderator.memory['con_debater'].append(con_argument.text)
         st.markdown(f"<div class='con-debater'>Con Debater's Argument:</div>", unsafe_allow_html=True)
         col1, col2 = st.columns([2, 1])
         with col1:
@@ -228,21 +228,39 @@ if st.button("Start Debate"):
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
     pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
-    moderator.memory['pro_debater'].append(pro_rebuttal)
-    st.markdown(f"<div class='pro-debater'>Pro Debater's Rebuttal:</div> <div class='pro-debater-text'>{pro_rebuttal}</div>", unsafe_allow_html=True)
+    pro_rebuttal_safety = moderator.safety_check(pro_rebuttal)
+    if pro_rebuttal_safety == None:
+        moderator.memory['pro_debater'].append(pro_rebuttal.text)
+        st.markdown(f"<div class='pro-debater'>Pro Debater's Rebuttal:</div> <div class='pro-debater-text'>{pro_rebuttal.text}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_rebuttal_safety}</div>", unsafe_allow_html=True)
 
     con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
-    moderator.memory['con_debater'].append(con_rebuttal)
-    st.markdown(f"<div class='con-debater'>Con Debater's Rebuttal:</div> <div class='con-debater-text'>{con_rebuttal}</div>", unsafe_allow_html=True)
+    con_rebuttal_safety = moderator.safety_check(con_rebuttal)
+    if con_rebuttal_safety == None:
+        moderator.memory['con_debater'].append(con_rebuttal.text)
+        st.markdown(f"<div class='con-debater'>Con Debater's Rebuttal:</div> <div class='con-debater-text'>{con_rebuttal.text}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_rebuttal_safety}</div>", unsafe_allow_html=True)
 
     # Closing Statements
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
+    
     pro_closing = pro_debater.generate_closing_statement(topic)
+    pro_closing_safety = moderator.safety_check(pro_closing)
+    if pro_closing_safety == None:
+        moderator.memory['pro_debater'].append(pro_closing.text)
+        st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_closing.text}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_closing_safety}</div>", unsafe_allow_html=True)
+
     con_closing = con_debater.generate_closing_statement(topic)
-    moderator.memory['pro_debater'].append(pro_closing)
-    moderator.memory['con_debater'].append(con_closing)
-    st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_closing}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_closing}</div>", unsafe_allow_html=True)
+    con_closing_safety = moderator.safety_check(con_closing)
+    if con_closing_safety == None:
+        moderator.memory['con_debater'].append(con_closing.text)
+        st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_closing.text}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_closing_safety}</div>", unsafe_allow_html=True)
 
     # Moderator's Final Remarks
     st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{moderator.finalize_debate()}</div>", unsafe_allow_html=True)
