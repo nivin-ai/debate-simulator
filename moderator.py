@@ -70,10 +70,7 @@ class Moderator:
                 category = rating.category
                 probability = rating.probability
                 if probability > 1:
-                    if len(violations) == 0:
-                        violations = [(category, rating)]
-                    else:
-                        violations.append((category, rating))
+                    violations.append((category, rating))
         if len(violations)==0:
             return None
         else:
