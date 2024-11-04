@@ -36,7 +36,7 @@ class FactChecker:
         """
         # This is a placeholder for claim extraction logic.
         # Assume statements are split by punctuation for simplicity.
-        claims = debater_statement.split('. ')
+        claims = debater_statement.text.split('. ')
         
         feedback = []
         for claim in claims:
