@@ -46,7 +46,7 @@ class Moderator:
         """
         Pose a question to both debaters to encourage deeper discussion.
         """
-        prompt = f"Based on the following content from the debater: [{self.memory['pro_debater']}], ask a relevant question to further challenge the debater."
+        prompt = f"The following is the debate content from each debater-        {list(self.memory.keys())[0]}:    {self.memory[list(self.memory.keys())[0]]},        {list(self.memory.keys())[1]}:    {self.memory[list(self.memory.keys())[1]]}. From this content, ask a question to challenge {self.memory[list(self.memory.keys())[0]]} further."
         question = self.model.generate_content(prompt).text
         print(f"Moderator: {question}")
         return question
