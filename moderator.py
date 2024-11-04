@@ -52,29 +52,36 @@ class Moderator:
         return question
 
     def safety_check(self, response):
+        # Mapping of safety category codes to their names
         safety_categories = {
             7: 'Harassment',
-            8: 'Hate_Speech',
-            9: 'Sexually_Explicit',
-            10: 'Dangerous_Content'
+            8: 'Hate Speech',
+            9: 'Sexually Explicit',
+            10: 'Dangerous Content'
         }
+        
+        # Mapping of safety rating levels to descriptions
         safety_ratings = {
             1: 'Negligible',
             2: 'Low',
             3: 'Medium',
             4: 'High'
         }
-        violations = []
-        for candidate in response.candidates:
-            for rating in candidate.safety_ratings:
-                category = rating.category
-                probability = rating.probability
-                if probability > 1:
-                    violations.append((category, rating))
-        if len(violations)==0:
+        
+        # Collect any violations
+        violations = [
+            (safety_categories.get(rating.category, "Unknown Category"), 
+             safety_ratings.get(rating.probability, "Unknown Rating"))
+            for candidate in response.candidates
+            for rating in candidate.safety_ratings
+            if rating.probability > 1
+        ]
+    
+        # Return result based on violations
+        if not violations:
             return None
-        else:
-            return f"I have to mask this content for violations in the safety rules. The following are the violations: {violations}"
+        return f"Content masked due to safety violations: {violations}"
+
 
     def intervene(self, statement):
         """
