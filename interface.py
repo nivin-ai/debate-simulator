@@ -227,21 +227,27 @@ if st.button("Start Debate"):
 
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
-    pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument.text)
-    pro_rebuttal_safety = moderator.safety_check(pro_rebuttal)
-    if pro_rebuttal_safety == None:
-        moderator.memory['pro_debater'].append(pro_rebuttal.text)
-        st.markdown(f"<div class='pro-debater'>Pro Debater's Rebuttal:</div> <div class='pro-debater-text'>{pro_rebuttal.text}</div>", unsafe_allow_html=True)
+    if con_argument_safety == None:
+        pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument.text)
+        pro_rebuttal_safety = moderator.safety_check(pro_rebuttal)
+        if pro_rebuttal_safety == None:
+            moderator.memory['pro_debater'].append(pro_rebuttal.text)
+            st.markdown(f"<div class='pro-debater'>Pro Debater's Rebuttal:</div> <div class='pro-debater-text'>{pro_rebuttal.text}</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_rebuttal_safety}</div>", unsafe_allow_html=True)
     else:
-        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_rebuttal_safety}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='pro-debater-text'>Pro Debater does not have a rebuttal since the Con Debater's main argument has been masked.</div>", unsafe_allow_html=True)
 
-    con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument.text)
-    con_rebuttal_safety = moderator.safety_check(con_rebuttal)
-    if con_rebuttal_safety == None:
-        moderator.memory['con_debater'].append(con_rebuttal.text)
-        st.markdown(f"<div class='con-debater'>Con Debater's Rebuttal:</div> <div class='con-debater-text'>{con_rebuttal.text}</div>", unsafe_allow_html=True)
+    if pro_argument_safety == None:
+        con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument.text)
+        con_rebuttal_safety = moderator.safety_check(con_rebuttal)
+        if con_rebuttal_safety == None:
+            moderator.memory['con_debater'].append(con_rebuttal.text)
+            st.markdown(f"<div class='con-debater'>Con Debater's Rebuttal:</div> <div class='con-debater-text'>{con_rebuttal.text}</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_rebuttal_safety}</div>", unsafe_allow_html=True)
     else:
-        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_rebuttal_safety}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='pro-debater-text'>Con Debater does not have a rebuttal since the Pro Debater's main argument has been masked.</div>", unsafe_allow_html=True)
 
     # Closing Statements
     st.markdown("<div class='subheader'>Closing Statements</div>", unsafe_allow_html=True)
