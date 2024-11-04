@@ -151,6 +151,10 @@ if st.button("Start Debate"):
         st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
         for claim, message, rating in fact_checker.provide_feedback(pro_argument):
             st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
+
+    # Moderator's question for pro debater
+    st.markdown(f"<div class='debater'>Moderator:</div> <div class='debater-text'>{moderator.pose_question('pro_debater')}</div>", unsafe_allow_html=True)
+
     
 
 
@@ -176,6 +180,7 @@ if st.button("Start Debate"):
     con_rebuttal = con_debater.generate_rebuttal(topic, pro_argument)
     moderator.memory['con_debator'].append(con_rebuttal)
     st.markdown(f"<div class='debater'>Con Debater's Rebuttal:</div> <div class='debater-text'>{con_rebuttal}</div>", unsafe_allow_html=True)
+
 
     
     # Closing Statements
