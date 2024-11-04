@@ -69,7 +69,7 @@ class Moderator:
         }
         
         # Collect any violations
-        violations = [(rating.category, rating.probability) for candidate in response.candidates for rating in candidate.safety_ratings if rating.probability >= 1]
+        violations = [(rating.category, rating.probability) for candidate in response.candidates for rating in candidate.safety_ratings if rating.probability > 1]
     
         # Return result based on violations
         if not violations:
