@@ -174,8 +174,13 @@ if st.button("Start Debate"):
             st.markdown(f"<div class='feedback'>{message}<br>Rating: {rating}</div>",unsafe_allow_html=True)
 
     # Moderator's question for con debater
-    st.markdown(f"<div class='debater'>Moderator: </div> <div class='debater-text'>I would like to pose a question here. {moderator.pose_question(con_argument)}</div>", unsafe_allow_html=True)
+    con_question = moderator.pose_question(con_argument)
+    st.markdown(f"<div class='debater'>Moderator: </div> <div class='debater-text'>I would like to pose a question here. {con_question)}</div>", unsafe_allow_html=True)
 
+    #con debater's answer
+    st.markdown(f"<div class='debater'>Con Debater: </div> <div class='debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
+
+    
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
     pro_rebuttal = pro_debater.generate_rebuttal(topic, con_argument)
