@@ -69,7 +69,7 @@ class Moderator:
             for rating in candidate.safety_ratings:
                 category = rating.category
                 probability = rating.probability
-                if probability > 1:
+                if probability > 2:
                     violations.append((category, rating))
         if len(violations)==0:
             return None
