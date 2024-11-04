@@ -193,7 +193,7 @@ if st.button("Start Debate"):
         with col2:
             st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
             pro_claim = fact_checker.get_claim(pro_argument)
-            st.markdown(f"<div class='feedback'>Claim: {pro_claim}<br>Rating: {moderator.get_rating(pro_claim)}</div>",unsafe_allow_html=True)
+            st.markdown(f"<div class='feedback'>Claim: {pro_claim}<br>Rating: {fact_checker.rate_claim(pro_claim)}</div>",unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_argument_safety}</div>", unsafe_allow_html=True)
 
@@ -220,7 +220,7 @@ if st.button("Start Debate"):
         with col2:
             st.markdown("<div class='subheader'>Fact-Checker Feedback</div>", unsafe_allow_html=True)
             con_claim = fact_checker.get_claim(con_argument)
-            st.markdown(f"<div class='feedback'>Claim: {con_claim}<br>Rating: {fact_checker.get_rating(con_claim)}</div>",unsafe_allow_html=True)
+            st.markdown(f"<div class='feedback'>Claim: {con_claim}<br>Rating: {fact_checker.rate_claim(con_claim)}</div>",unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_argument_safety}</div>", unsafe_allow_html=True)
 
