@@ -175,7 +175,7 @@ if st.button("Start Debate"):
 
     # Moderator's question for con debater
     con_question = moderator.pose_question(con_argument)
-    st.markdown(f"<div class='debater'>Moderator: </div> <div class='debater-text'>I would like to pose a question here. {con_question)}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='debater'>Moderator: </div> <div class='debater-text'>I would like to pose a question here. {con_question}</div>", unsafe_allow_html=True)
 
     #con debater's answer
     st.markdown(f"<div class='debater'>Con Debater: </div> <div class='debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
