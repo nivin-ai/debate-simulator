@@ -1,3 +1,7 @@
+import google.generativeai as genai
+import os
+os.environ['GOOGLE_API_KEY'] = "AIzaSyAvgIy_Ckc8o7aSc4I2NlRBPAFgmksXGVs"
+genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 import json
 import random
@@ -54,7 +58,8 @@ class FactChecker:
         # Here, you would save the updated fact_db back to a file if needed.
 
 
-    def check_fact(self, text):
+    def get_claim(self, text):
         prompt = f"Identify and return a fact that needs to be checked from the following text: {text}. Return only the fact."
         claim = model.generate_content(prompt).text
+        return claim
 
