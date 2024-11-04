@@ -173,8 +173,12 @@ if st.button("Start Debate"):
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_opening_safety}</div>", unsafe_allow_html=True)
 
     con_opening = con_debater.generate_opening_statement(topic)
-    moderator.memory['con_debater'] = [con_opening]
-    st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_opening}</div>", unsafe_allow_html=True)
+    con_opening_safety = moderator.safety_check(con_opening)
+    if con_opening_safety == None:
+        moderator.memory['con_debater'] = [con_opening.text]
+        st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_opening.text}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_opening_safety}</div>", unsafe_allow_html=True)
 
     # Main Arguments with Fact-Checker Feedback
     st.markdown("<div class='subheader'>Main Arguments</div>", unsafe_allow_html=True)
