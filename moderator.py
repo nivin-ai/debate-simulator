@@ -51,6 +51,31 @@ class Moderator:
         #print(f"Moderator: {question}")
         return question
 
+    def safety_check(self, response):
+        safety_categories = {
+            7: 'Harassment',
+            8: 'Hate_Speech',
+            9: 'Sexually_Explicit',
+            10: 'Dangerous_Content'
+        }
+        safety_ratings = {
+            1: 'Negligible',
+            2: 'Low',
+            3: 'Medium',
+            4: 'High'
+        }
+        violations = []
+        for candidate in response.candidates:
+            for rating in candidate.safety_ratings:
+                category = rating.category
+                probability = rating.probability
+                if probability > 1:
+                    violations.append((category, rating))
+        if len(violations)==0:
+            return None
+        else:
+            return f"I have to mask this content for violations in the safety rules. The following are the violations: {violations}"
+
     def intervene(self, statement):
         """
         Intervene if a debater goes off-topic or repeats points.
