@@ -201,7 +201,12 @@ if st.button("Start Debate"):
     if pro_argument_safety==None:
         pro_question = moderator.pose_question(pro_argument)
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_question}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_debater.answer_question(pro_question)}</div>", unsafe_allow_html=True)
+        pro_answer = pro_debater.answer_question(pro_question)
+        pro_answer_safety = moderator.safety_check(pro_answer)
+        if pro_answer_safety == None:
+            st.markdown(f"<div class='pro-debater'>Pro Debater:</div> <div class='pro-debater-text'>{pro_answer.text}</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{pro_answer_safety}</div>", unsafe_allow_html=True)
 
     # Con Debater's Argument with Fact-Checker Feedback
     con_argument = con_debater.generate_main_argument(topic)
@@ -223,7 +228,13 @@ if st.button("Start Debate"):
     if con_argument_safety==None:
         con_question = moderator.pose_question(con_argument)
         st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_question}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_debater.answer_question(con_question)}</div>", unsafe_allow_html=True)
+        con_answer = con_debater.answer_question(con_question)
+        con_answer_safety = moderator.safety_check(con_answer)
+        if con_answer_safety == None:
+            st.markdown(f"<div class='con-debater'>Con Debater:</div> <div class='con-debater-text'>{con_answer.text}</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div class='moderator'>Moderator:</div> <div class='moderator-text'>{con_answer_safety}</div>", unsafe_allow_html=True)
+
 
     # Rebuttals
     st.markdown("<div class='subheader'>Rebuttals</div>", unsafe_allow_html=True)
