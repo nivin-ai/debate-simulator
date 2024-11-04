@@ -11,6 +11,7 @@ class FactChecker:
         """
         Initialize the FactChecker with a database of facts and misconceptions.
         """
+        self.model = genai.GenerativeModel('gemini-pro')
         # Load verified facts and misconceptions from JSON files
         with open(fact_db_path, 'r') as f:
             self.fact_db = json.load(f)
