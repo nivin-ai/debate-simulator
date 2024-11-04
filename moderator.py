@@ -69,13 +69,7 @@ class Moderator:
         }
         
         # Collect any violations
-        violations = [
-            (safety_categories.get(rating.category, "Unknown Category"), 
-             safety_ratings.get(rating.probability, "Unknown Rating"))
-            for candidate in response.candidates
-            for rating in candidate.safety_ratings
-            if rating.probability >= 1
-        ]
+        violations = [(rating.category, rating.probability) for candidate in response.candidates for rating in candidate.safety_ratings if rating.probability >= 1]
     
         # Return result based on violations
         if not violations:
