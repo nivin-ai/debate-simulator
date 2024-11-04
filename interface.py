@@ -99,6 +99,7 @@ st.markdown(
         font-weight: 500;
         color: #333;
         margin: 10px 0;
+        background-color: #FFEFD5; /* Pastel peach for Moderator */
     }
     
     .pro-debater {
@@ -113,6 +114,7 @@ st.markdown(
         font-weight: 500;
         color: #333;
         margin: 10px 0;
+        background-color: #B3E5FC; /* Pastel blue for Pro Debater */
     }
     
     .con-debater {
@@ -127,6 +129,7 @@ st.markdown(
         font-weight: 500;
         color: #333;
         margin: 10px 0;
+        background-color: #C8E6C9; /* Pastel green for Con Debater */
     }
     
     /* Debate Topic styling */
