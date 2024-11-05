@@ -61,11 +61,11 @@ class FactChecker:
 
     def get_claim(self, text):
         prompt = f"Identify and return no more than 4 facts that needs to be checked from the following text: {text}. Return only the facts, separated by a ';'."
-        claim = self.model.generate_content(prompt).text.split(';')
+        claim = self.model.generate_content(prompt)
         return claim
 
     def rate_claim(self, claim):
         prompt = f"Rate the accuracy/factual truth of the following claim as Low/Medium/High: {claim}"
         rating = self.model.generate_content(prompt)
-        return rating.text
+        return rating
 
