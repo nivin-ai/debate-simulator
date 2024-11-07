@@ -66,6 +66,12 @@ class FactChecker:
 
     def rate_claim(self, claim):
         prompt = f"Rate the accuracy/factual truth of the following claim as Low/Medium/High: {claim}"
-        rating = self.model.generate_content(prompt)
-        return rating.text
+        try:    
+            rating = self.model.generate_content(prompt)
+            return rating.text
+        except ResourceExhausted:
+            print("Resource exhausted, retrying...")
+            time.sleep(5)  # Wait before retrying
+            rating = self.model.generate_content(prompt)
+            return rating.text
 
